@@ -23,6 +23,7 @@ const baseTheme = createTheme({
       light: '#fadec9',
     },
     success: {
+      dark: '#348150',
       main: '#6c9b7d',
       light: '#dbeddb',
     },

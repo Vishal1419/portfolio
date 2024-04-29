@@ -1,10 +1,14 @@
 'use client';
 
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { NavMenuItem } from './styles';
 import ProfileMenu from '../ProfileMenu';
 
 function Header() {
+  const pathname = usePathname();
+
   return (
     <Stack
       direction="row"
@@ -23,9 +27,28 @@ function Header() {
           p={0}
           m={0}
         >
-          <NavMenuItem>Home</NavMenuItem>
-          <NavMenuItem>Experience</NavMenuItem>
-          <NavMenuItem>Work</NavMenuItem>
+          <NavMenuItem
+            component={Link}
+            href="/"
+            className={pathname === '/' ? 'active' : ''}
+          >
+            Home
+          </NavMenuItem>
+          <NavMenuItem
+            component={Link}
+            href="/work"
+            className={pathname === '/work' ? 'active' : ''}
+          >
+            Work
+          </NavMenuItem>
+          <Button
+            variant="outlined"
+            color="primary"
+            component="a"
+            href="mailto:vishalsherathiya@gmail.com"
+          >
+            Contact
+          </Button>
         </Stack>
       </nav>
       <ProfileMenu />

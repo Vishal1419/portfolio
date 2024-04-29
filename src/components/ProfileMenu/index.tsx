@@ -75,33 +75,13 @@ function ProfileMenu() {
         onClose={handleCloseMenu}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        // PaperProps={{
-        //   // elevation: 0,
-        //   sx: {
-        //     overflow: 'visible',
-        //     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-        //     mt: 1,
-        //     '&::before': {
-        //       content: '""',
-        //       display: 'block',
-        //       position: 'absolute',
-        //       top: 0,
-        //       right: 14,
-        //       width: 10,
-        //       height: 10,
-        //       bgcolor: 'background.paper',
-        //       transform: 'translateY(-50%) rotate(45deg)',
-        //       zIndex: 0,
-        //     },
-        //   },
-        // }}
       >
         <Stack px={3} py={2} gap={2.5}>
           <Section title="Availability">
             <Stack direction="row" alignItems="center" gap={1}>
               <StatusChip color="success">Freelance</StatusChip>
               <StatusChip color="success">Contract</StatusChip>
-              <StatusChip color="error">Full time</StatusChip>
+              <StatusChip color="success">Full time</StatusChip>
               <StatusChip color="success">Part time</StatusChip>
             </Stack>
           </Section>

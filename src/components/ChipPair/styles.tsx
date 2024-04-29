@@ -30,6 +30,7 @@ const Chip = styled(MuiChip)(({ theme, color }) => ({
   [`& .${muiChipClasses.label}`]: {
     padding: 0,
   },
+  fontSize: 14,
 }));
 
 export const LeftChip = styled(Chip)(({ theme }) => ({

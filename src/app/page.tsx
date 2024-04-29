@@ -9,6 +9,7 @@ import {
   StackProps,
   Typography,
   styled,
+  useMediaQuery,
 } from '@mui/material';
 import {
   CheckCircle as CheckCircleIcon,
@@ -288,6 +289,30 @@ const Value = styled(({ children, ...props }: StackProps) => (
   </Stack>
 ))();
 
+const StyledAccordion = styled(Accordion)(() => ({
+  boxShadow: 'none',
+  '&:before': {
+    content: 'none',
+  },
+}));
+
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.grey[300]}`,
+}));
+
+const Overlay = styled(({ ...props }: StackProps) => (
+  <Stack justifyContent="center" alignItems="center" {...props} />
+))(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  position: 'fixed',
+  top: '0',
+  left: '0',
+  textAlign: 'center',
+  color: theme.palette.primary.light,
+  backgroundColor: 'rgba(0, 0, 0, 0.9)',
+}));
+
 enum ClientGridTemplateAreas {
   AVATAR = 'avatar',
   NAME = 'name',
@@ -317,6 +342,8 @@ const Client = styled('div')(({ theme }) => ({
 }));
 
 export default function Home() {
+  const isMobile = useMediaQuery('(max-width:1024px)');
+
   return (
     <Stack gap={2}>
       <Stack direction="row" align-items="center" gap={2}>
@@ -353,28 +380,32 @@ export default function Home() {
           <Section title="Expertise" size="large" hasDivider>
             <Stack gap={1}>
               <Stack direction="row" alignItems="center" gap={1}>
-                <ChipPair labelLeft="HTML" labelRight="10y" color="warning" />
-                <ChipPair labelLeft="CSS" labelRight="10y" color="primary" />
+                <ChipPair labelLeft="HTML" labelRight="10y" color="secondary" />
+                <ChipPair labelLeft="CSS" labelRight="10y" color="secondary" />
                 <ChipPair
                   labelLeft="Javascript"
                   labelRight="9y"
                   color="secondary"
                 />
-                <ChipPair labelLeft="React" labelRight="7y" color="primary" />
-                <ChipPair labelLeft="Redux" labelRight="7y" color="primary" />
+                <ChipPair labelLeft="React" labelRight="7y" color="secondary" />
+                <ChipPair labelLeft="Redux" labelRight="7y" color="secondary" />
                 <ChipPair
                   labelLeft="Typescript"
                   labelRight="4y"
-                  color="primary"
+                  color="secondary"
                 />
-                <ChipPair labelLeft="Next.js" labelRight="3y" color="primary" />
+                <ChipPair
+                  labelLeft="Next.js"
+                  labelRight="3y"
+                  color="secondary"
+                />
               </Stack>
               <Stack direction="row" alignItems="center" gap={1}>
-                <ChipPair labelLeft="Jest" labelRight="4y" color="warning" />
+                <ChipPair labelLeft="Jest" labelRight="4y" color="secondary" />
                 <ChipPair
                   labelLeft="@testing-library/react"
                   labelRight="4y"
-                  color="primary"
+                  color="secondary"
                 />
                 <ChipPair
                   labelLeft="Pusher.js"
@@ -384,39 +415,47 @@ export default function Home() {
                 <ChipPair
                   labelLeft="Video.js"
                   labelRight="3y"
-                  color="primary"
+                  color="secondary"
                 />
                 <ChipPair
                   labelLeft="Slate.js"
                   labelRight="1y"
-                  color="primary"
+                  color="secondary"
                 />
-                <ChipPair labelLeft="D3.js" labelRight="1y" color="primary" />
+                <ChipPair labelLeft="D3.js" labelRight="1y" color="secondary" />
                 <ChipPair
                   labelLeft="Fabric.js"
                   labelRight="1y"
-                  color="primary"
+                  color="secondary"
                 />
               </Stack>
               <Stack direction="row" alignItems="center" gap={1}>
                 <ChipPair
                   labelLeft="Material-ui"
                   labelRight="6y"
-                  color="warning"
+                  color="secondary"
                 />
                 <ChipPair
                   labelLeft="Tailwind"
                   labelRight="3y"
-                  color="primary"
+                  color="secondary"
                 />
                 <ChipPair labelLeft="SCSS" labelRight="3y" color="secondary" />
                 <ChipPair
                   labelLeft="styled-components"
                   labelRight="4y"
-                  color="primary"
+                  color="secondary"
                 />
-                <ChipPair labelLeft="Emotion" labelRight="4y" color="primary" />
-                <ChipPair labelLeft="styleX" labelRight="1y" color="primary" />
+                <ChipPair
+                  labelLeft="Emotion"
+                  labelRight="4y"
+                  color="secondary"
+                />
+                <ChipPair
+                  labelLeft="styleX"
+                  labelRight="1y"
+                  color="secondary"
+                />
               </Stack>
             </Stack>
           </Section>
@@ -480,12 +519,12 @@ export default function Home() {
                   <ChipPair
                     labelLeft="Domain"
                     labelRight={project.domain}
-                    color="success"
+                    color="warning"
                   />
                   <ChipPair
                     labelLeft="Service Type"
                     labelRight={project.serviceType}
-                    color="secondary"
+                    color="primary"
                   />
                   <Typography variant="caption" ml="auto">
                     {typeof project.duration === 'string' ? (
@@ -503,12 +542,16 @@ export default function Home() {
                   <strong>My Role</strong>: {project.myRole}
                 </Typography>
                 <Divider sx={{ my: 1 }} />
-                <Section title="Challenges & Requirements">
+                <Section
+                  title="Challenges & Requirements"
+                  titleColor="error.main"
+                >
                   <Stack component="ul" pl={2}>
                     {project.challenges.map((challenge) => (
                       <Typography
                         key={challenge}
                         variant="body2"
+                        color="grey.700"
                         component="li"
                       >
                         {challenge}
@@ -516,10 +559,15 @@ export default function Home() {
                     ))}
                   </Stack>
                 </Section>
-                <Section title="Outcomes">
+                <Section title="Outcomes" titleColor="success.dark">
                   <Stack component="ul" pl={2}>
                     {project.outcomes.map((outcome) => (
-                      <Typography key={outcome} variant="body2" component="li">
+                      <Typography
+                        key={outcome}
+                        variant="body2"
+                        color="grey.700"
+                        component="li"
+                      >
                         {outcome}
                       </Typography>
                     ))}
@@ -570,7 +618,7 @@ export default function Home() {
                     maxWidth={524}
                   >
                     {project.concepts.map((concept) => (
-                      <Chip key={concept.name} color={concept.color}>
+                      <Chip key={concept.name} color="success">
                         {concept.name}
                       </Chip>
                     ))}
@@ -585,7 +633,7 @@ export default function Home() {
                     maxWidth={524}
                   >
                     {project.techstack.map((tech) => (
-                      <Chip key={tech.name} color={tech.color}>
+                      <Chip key={tech.name} color="secondary">
                         {tech.name}
                       </Chip>
                     ))}
@@ -607,18 +655,28 @@ export default function Home() {
       </Section>
       <Section title="FAQ - Frequently asked questions" size="large">
         {faqs.map((faq, index) => (
-          <Accordion key={faq.question}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <StyledAccordion key={faq.question}>
+            <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="body2">{`${index + 1}. ${
                 faq.question
               }`}</Typography>
-            </AccordionSummary>
+            </StyledAccordionSummary>
             <AccordionDetails>
               <Typography variant="body2">{faq.answer}</Typography>
             </AccordionDetails>
-          </Accordion>
+          </StyledAccordion>
         ))}
       </Section>
+      {isMobile && (
+        <Overlay>
+          <Typography variant="h4">Apologies for the inconvenience.</Typography>
+          <Typography variant="body1">
+            This page is currently not compatible with mobile and tablet
+            viewPort. This page is undergoing redesign and will be available
+            again soon.
+          </Typography>
+        </Overlay>
+      )}
     </Stack>
   );
 }

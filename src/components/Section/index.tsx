@@ -1,8 +1,9 @@
-import { Divider, Stack, Typography } from '@mui/material';
+import { Divider, Stack, Typography, TypographyProps } from '@mui/material';
 import { ReactNode } from 'react';
 
 export interface SectionProps {
   title?: ReactNode;
+  titleColor?: TypographyProps['color'];
   children: ReactNode;
   /**
    * renders large or medium font for title
@@ -18,6 +19,7 @@ export interface SectionProps {
 
 function Section({
   title,
+  titleColor,
   children,
   size = 'medium',
   hasDivider = false,
@@ -29,6 +31,7 @@ function Section({
           <Typography
             variant="subtitle2"
             fontSize={size === 'medium' ? 14 : 18}
+            color={titleColor}
           >
             {title}
           </Typography>

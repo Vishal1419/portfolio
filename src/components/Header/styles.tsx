@@ -6,6 +6,9 @@ export const NavMenuItem = styled(MenuItem)(({ theme }) => ({
   borderBottom: '2px solid transparent',
   '&:hover': {
     backgroundColor: 'transparent',
-    borderColor: 'grey',
+    borderColor: theme.palette.primary.light,
   },
-}));
+  '&.active': {
+    borderColor: theme.palette.primary.main,
+  },
+})) as typeof MenuItem;
