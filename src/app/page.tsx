@@ -294,7 +294,7 @@ enum ClientGridTemplateAreas {
   DESIGNATION = 'designation',
 }
 
-export const Client = styled('div')(({ theme }) => ({
+const Client = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateAreas: `
     "${ClientGridTemplateAreas.AVATAR} ${ClientGridTemplateAreas.NAME}"
