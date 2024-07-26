@@ -5,6 +5,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Divider,
+  Link,
   Stack,
   StackProps,
   Typography,
@@ -69,6 +70,9 @@ const values = [
 const projects = [
   {
     name: 'Acadly',
+    url: 'https://www.acadly.com/',
+    urlDescription:
+      '*You can check description of the project and what features are available using this link. \n Work done by me in this project can only be viewed after authentication, which I can display over a video call.',
     logo: '/acadly.png',
     logoHeight: 26,
     domain: 'Ed-tech',
@@ -128,6 +132,9 @@ const projects = [
   },
   {
     name: 'Gigalixir',
+    url: 'https://www.gigalixir.com/',
+    urlDescription:
+      '*You can check description of the project and what features are available using this link. \n Work done by me in this project can only be viewed after authentication, which I can display over a video call.',
     logo: '/gigalixir.png',
     logoHeight: 32,
     domain: 'Deployment',
@@ -181,6 +188,9 @@ const projects = [
   },
   {
     name: 'One Village',
+    url: 'https://provider.onevillage.co/',
+    urlDescription:
+      '*Work done by me in this project can only be viewed after authentication, which I can display over a video call.',
     logo: '/one-village.png',
     logoHeight: 15,
     domain: 'Ed-tech',
@@ -482,7 +492,7 @@ export default function Home() {
         </Stack>
       </Stack>
       <Section title="Clients" size="large" hasDivider>
-        <Stack direction="row" alignItems="center" gap={2}>
+        <Stack direction="row" alignItems="center" gap={4}>
           {clients.map((client) => (
             <Image
               key={client.name}
@@ -502,7 +512,6 @@ export default function Home() {
             <Stack
               key={project.name}
               direction="row"
-              alignItems="center"
               border={(theme) => `1px solid ${theme.palette.grey[300]}`}
               p={2}
             >
@@ -608,7 +617,17 @@ export default function Home() {
                   </Stack>
                 </Stack>
               </Stack>
-              <Stack flex={1} alignItems="center" gap={2}>
+              <Stack flex={1} gap={2} px={8}>
+                <Stack justifyContent="flex-start">
+                  <Link href={project.url}>
+                    <Typography variant="body1">
+                      Visit {project.name}
+                    </Typography>
+                  </Link>
+                  <Typography variant="body2">
+                    {project.urlDescription}
+                  </Typography>
+                </Stack>
                 <Section title="Concepts used">
                   <Stack
                     direction="row"
