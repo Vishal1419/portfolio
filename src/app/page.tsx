@@ -276,6 +276,8 @@ const homeClasses = generateClasses('Home', [
   'clientAvatar',
   'clientName',
   'clientDesignation',
+  'testimonialImageStart',
+  'testimonialImageEnd',
 ]);
 
 const Service = styled(({ children, ...props }: StackProps) => (
@@ -291,6 +293,35 @@ const Domain = styled(({ children, ...props }: StackProps) => (
     <Typography variant="body2">{children}</Typography>
   </Stack>
 ))();
+
+const Testimonial = styled(({ children, ...props }: StackProps) => (
+  <Stack direction="row" gap={2} {...props}>
+    <Image
+      src="/quotes.png"
+      alt=""
+      width={32}
+      height={32}
+      className={homeClasses.testimonialImageStart}
+    />
+    <Typography variant="body2">{children}</Typography>
+    <Image
+      src="/quotes.png"
+      alt=""
+      width={32}
+      height={32}
+      className={homeClasses.testimonialImageEnd}
+    />
+  </Stack>
+))(({ theme }) => ({
+  padding: theme.spacing(0, 1),
+  [`& .${homeClasses.testimonialImageStart}`]: {
+    opacity: 0.2,
+  },
+  [`& .${homeClasses.testimonialImageEnd}`]: {
+    transform: 'rotate(180deg)',
+    opacity: 0.2,
+  },
+}));
 
 const Value = styled(({ children, ...props }: StackProps) => (
   <Stack {...props} direction="row" alignItems="center" gap={1}>
@@ -608,11 +639,9 @@ export default function Home() {
                       {project.clientDesignation}
                     </Typography>
                   </Client>
-                  <Stack gap={0.5} maxWidth={400}>
+                  <Stack gap={0.5} maxWidth={520}>
                     {project.testimonials.map((testimonial) => (
-                      <Typography key={testimonial} variant="body2">
-                        {testimonial}
-                      </Typography>
+                      <Testimonial key={testimonial}>{testimonial}</Testimonial>
                     ))}
                   </Stack>
                 </Stack>
