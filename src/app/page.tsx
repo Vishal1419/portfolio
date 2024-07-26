@@ -292,18 +292,6 @@ const Domain = styled(({ children, ...props }: StackProps) => (
   </Stack>
 ))();
 
-const Testimonial = styled(({ children, ...props }: StackProps) => (
-  <Stack direction="row" gap={1} {...props}>
-    <Image src="/quotes.png" alt="" width={16} height={16} />
-    <Typography variant="body2">{children}</Typography>
-  </Stack>
-))(({ theme }) => ({
-  padding: theme.spacing(0, 1),
-  '& > img': {
-    opacity: 0.2,
-  },
-}));
-
 const Value = styled(({ children, ...props }: StackProps) => (
   <Stack {...props} direction="row" alignItems="center" gap={1}>
     <CheckCircleIcon color="success" sx={{ fontSize: 14 }} />
@@ -354,12 +342,25 @@ const Client = styled('div')(({ theme }) => ({
   alignItems: 'center',
   [`& .${homeClasses.clientAvatar}`]: {
     gridArea: ClientGridTemplateAreas.AVATAR,
+    borderRadius: 4,
   },
   [`& .${homeClasses.clientName}`]: {
     gridArea: ClientGridTemplateAreas.NAME,
   },
   [`& .${homeClasses.clientDesignation}`]: {
     gridArea: ClientGridTemplateAreas.DESIGNATION,
+  },
+}));
+
+const Testimonial = styled(({ children, ...props }: StackProps) => (
+  <Stack direction="row" gap={1} {...props}>
+    <Image src="/quotes.png" alt="" width={16} height={16} />
+    <Typography variant="body2">{children}</Typography>
+  </Stack>
+))(({ theme }) => ({
+  padding: theme.spacing(0, 1),
+  '& > img': {
+    opacity: 0.2,
   },
 }));
 
@@ -525,6 +526,7 @@ export default function Home() {
               key={project.name}
               direction="row"
               border={(theme) => `1px solid ${theme.palette.grey[300]}`}
+              borderRadius="4px"
               p={2}
             >
               <Stack flex={1} gap={0.5}>

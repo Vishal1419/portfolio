@@ -66,6 +66,7 @@ export const ProfileMenuAnchor = styled((props: ButtonProps) => (
   gap: theme.spacing(0, 1),
   [`& .${profileMenuClasses.avatar}`]: {
     gridArea: ProfileMenuAnchorGridTemplateAreas.AVATAR,
+    borderRadius: 4,
   },
   [`& .${profileMenuClasses.name}`]: {
     gridArea: ProfileMenuAnchorGridTemplateAreas.NAME,
